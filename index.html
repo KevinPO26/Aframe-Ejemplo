@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent('play-pause', {
+        init: function() {
+          var MyVideo = document.querySelector('#video');
+          var videoControls = document.querySelector('#videoControls');
+          this.el.addEventListener('click', function(){
+            if(MyVideo.paused){
+              MyVideo.play();
+              videoControls.setAttribute('src', '#pause');
+            }else{
+              MyVideo.pause();
+              videoControls.setAttribute('src', '#play');
+            }
+          });
+        }
+      });
+    </script>
+      
+      
+      </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="pause" src="video/boton.png">
+        <img id="play" src="video/boton-de-play.png">
+        <video id="video" src="video/cuava.mp4" autoplay loop="true"></video>
+      </a-assets>
+
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
+
+      <a-videosphere src="#video"></a-videosphere>
+      <a-image id="videoControls" src="#play" position="0 1 -2" scale="0.2 0.2 1" play-pause></a-image>
+    </a-scene>
+    
+  </body>
+</html>
